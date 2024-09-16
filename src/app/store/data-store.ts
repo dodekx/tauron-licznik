@@ -80,23 +80,6 @@ export const DataRecordStore = signalStore(
     },
   })),
   withComputed((store) => ({
-    totalEnergyConsumption: computed(() =>
-      Math.abs(
-        store
-          .energyDataEntities()
-          .reduce((previousValue: number, { value }: EnergyDataRecord) => {
-            return value < 0 ? previousValue + value : previousValue;
-          }, 0)
-      )
-    ),
-    totalEnergyProduction: computed(() =>
-      store
-        .energyDataEntities()
-        .reduce((previousValue: number, { value, id }: EnergyDataRecord) => {
-          console.log(previousValue, value, id);
 
-          return value > 0 ? previousValue + value : previousValue;
-        }, 0)
-    ),
   }))
 );

@@ -24,6 +24,7 @@ export const bydHVM: Battery[] = [
 }));
 
 export const sampleBattery: Battery[] = [
+  { capacity: 0, power: 1, efficiency: 96, numberOfModules: 1 },
   { capacity: 1, power: 1, efficiency: 96, numberOfModules: 1 },
   { capacity: 2, power: 1, efficiency: 96, numberOfModules: 1 },
   { capacity: 3, power: 2, efficiency: 96, numberOfModules: 1 },

@@ -15,8 +15,12 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 
-import { Battery } from '../../types/data-record';
+import { Battery, EnergyDataRecord } from '../../types/data-record';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import {
+  calculateG12Price,
+  calculatePrice,
+} from '../../store/calculate-g11-price';
 
 @Component({
   selector: 'app-energy-summary-list',
@@ -45,6 +49,38 @@ export class EnergySummaryListComponent {
       });
     return new MatTableDataSource(batteries);
   });
+
+  totalEnergyConsumption = computed(() =>
+    Math.abs(
+      this.store
+        .energyDataEntities()
+        .reduce((previousValue: number, { value }: EnergyDataRecord) => {
+          return value < 0 ? previousValue + value : previousValue;
+        }, 0)
+    )
+  );
+
+  totalEnergyProduction = computed(() =>
+    this.store
+      .energyDataEntities()
+      .reduce((previousValue: number, { value, id }: EnergyDataRecord) => {
+        console.log(previousValue, value, id);
+
+        return value > 0 ? previousValue + value : previousValue;
+      }, 0)
+  );
+
+  g11Price = computed(() =>
+    calculatePrice(this.store.energyDataEntities(), 'G11')
+  );
+
+  g12Price = computed(() =>
+    calculatePrice(this.store.energyDataEntities(), 'G12')
+  );
+
+  g12WPrice = computed(() =>
+    calculatePrice(this.store.energyDataEntities(), 'G12W')
+  );
 }
 
 interface BatterySummary extends Battery {

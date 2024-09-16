@@ -3,14 +3,30 @@
   <mat-list-item role="listitem">
     <div matListItemTitle>Produkcja</div>
     <div matListItemLine>
-      {{ store.totalEnergyProduction() | number : "1.2-2" }} kwh
+      {{ totalEnergyProduction() | number : "1.2-2" }} kwh
     </div>
   </mat-list-item>
+
   <mat-list-item role="listitem">
     <div matListItemTitle>Zużycie</div>
     <div matListItemLine>
-      {{ store.totalEnergyConsumption() | number : "1.2-2" }} kwh
+      {{ totalEnergyConsumption() | number : "1.2-2" }} kwh
     </div>
+  </mat-list-item>
+
+  <mat-list-item role="listitem">
+    <div matListItemTitle>Cena G11</div>
+    <div matListItemLine>{{ g11Price() | number : "1.2-2" }} zł</div>
+  </mat-list-item>
+
+  <mat-list-item role="listitem">
+    <div matListItemTitle>Cena G12</div>
+    <div matListItemLine>{{ g12Price() | number : "1.2-2" }} zł</div>
+  </mat-list-item>
+
+  <mat-list-item role="listitem">
+    <div matListItemTitle>Cena G12 W</div>
+    <div matListItemLine>{{ g12WPrice() | number : "1.2-2" }} zł</div>
   </mat-list-item>
 </mat-list>
 

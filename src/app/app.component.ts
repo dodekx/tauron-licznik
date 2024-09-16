@@ -21,11 +21,13 @@ import { EnergySummaryListComponent } from './components/energy-summary-list/ene
 })
 export class AppComponent {}
 
-
 /*
 TODO
 wczytywanie cen gieldowych
 ustawienie cen taryf g11, g12,g12w,g13 // na razie obecna stawka
-
+na ile oplaca sie przejsc na inna taryfe
+podanie na ile oplacalna taryfa dynamiczna
+ustawienie dodawania miesiacami odczytu licznika
+resetowania danych
 
 */
