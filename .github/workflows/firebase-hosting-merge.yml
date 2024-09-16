@@ -33,7 +33,7 @@ jobs:
           firebase login:ci --no-localhost --token $(cat serviceAccountKey.json | jq -r '.private_key')
 
       - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v1
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           projectId: ${{ secrets.FIREBASE_PROJECT_ID }}
           site: ${{ secrets.FIREBASE_SITE }} # Optional: If you have multiple sites
