@@ -23,17 +23,15 @@ jobs:
       - name: Build Angular app
         run: npm run build
 
-      - name: Login to Firebase
-        uses: actions/google-login@v1
-        with:
-          client_id: ${{ secrets.FIREBASE_CLIENT_ID }}
-          client_secret: ${{ secrets.FIREBASE_CLIENT_SECRET }}
-          scopes: "https://www.googleapis.com/auth/firebase.database https://www.googleapis.com/auth/firebase.messaging https://www.googleapis.com/auth/firebase.storage"
+      - name: Configure Firebase CLI
+        run: |
+          echo ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }} > serviceAccountKey.json
+          firebase use --project ${{ secrets.FIREBASE_PROJECT_ID }}
+          firebase login:ci --no-localhost --token $(cat serviceAccountKey.json | jq -r '.private_key')
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           projectId: ${{ secrets.FIREBASE_PROJECT_ID }}
-          authToken: ${{ steps.login-to-firebase.outputs.auth_token }}
           site: ${{ secrets.FIREBASE_SITE }} # Optional: If you have multiple sites
           public_dir: dist/your-angular-app # Replace with your build output directory
