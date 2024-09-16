@@ -17,7 +17,7 @@ import {
   updateEntity,
   withEntities,
 } from '@ngrx/signals/entities';
-import { calculateIncreasedSelfConsumption } from './calculate-increased-self-consumption';
+import { calculateEnergyDataWithBattery } from './calculate-increased-self-consumption';
 
 type DataRecordState = {
   isLoaded: boolean;
@@ -79,7 +79,5 @@ export const DataRecordStore = signalStore(
       patchState(store, { isLoading: false });
     },
   })),
-  withComputed((store) => ({
-
-  }))
+  withComputed((store) => ({}))
 );

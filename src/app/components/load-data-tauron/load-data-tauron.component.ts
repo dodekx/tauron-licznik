@@ -4,11 +4,18 @@ import { DataRecordStore } from '../../store/data-store';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CsvImportService } from '../../services/csv-import.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-load-data-tauron',
   standalone: true,
-  imports: [MatCardModule, MatProgressSpinnerModule],
+  imports: [
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
   templateUrl: './load-data-tauron.component.html',
   styleUrl: './load-data-tauron.component.scss',
 })

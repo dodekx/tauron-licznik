@@ -9,18 +9,16 @@ import {
 import { MatListModule } from '@angular/material/list';
 import { DataRecordStore } from '../../store/data-store';
 import { bydHVM, bydHVS, sampleBattery } from '../../batteries-data/byd_hvs';
-import { calculateIncreasedSelfConsumption } from '../../store/calculate-increased-self-consumption';
+import {
+  calculateEnergyDataWithBattery,
+  EnergyData,
+} from '../../store/calculate-increased-self-consumption';
 import { CommonModule } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 
-import { Battery, EnergyDataRecord } from '../../types/data-record';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
-import {
-  calculateG12Price,
-  calculatePrice,
-} from '../../store/calculate-g11-price';
+import { Battery } from '../../types/data-record';
 
 @Component({
   selector: 'app-energy-summary-list',
@@ -31,7 +29,18 @@ import {
 })
 export class EnergySummaryListComponent {
   readonly store = inject(DataRecordStore);
-  displayedColumns: string[] = ['id', 'capacity', 'power', 'selfConsumption'];
+  displayedColumns: string[] = [
+    'id',
+    'capacity',
+    'power',
+    'selfConsumption',
+    'consumption',
+    'fedIntoGrid',
+    'priceG11',
+    'priceG12',
+    'priceG12W',
+    'priceG13',
+  ];
 
   batteryRows = computed<MatTableDataSource<BatterySummary>>(() => {
     const energyDataEntities = this.store.energyDataEntities();
@@ -41,48 +50,13 @@ export class EnergySummaryListComponent {
       .map((battery) => {
         return {
           ...battery,
-          selfConsumption: calculateIncreasedSelfConsumption(
-            energyDataEntities,
-            battery
-          ),
+          ...calculateEnergyDataWithBattery(energyDataEntities, battery),
         };
       });
     return new MatTableDataSource(batteries);
   });
-
-  totalEnergyConsumption = computed(() =>
-    Math.abs(
-      this.store
-        .energyDataEntities()
-        .reduce((previousValue: number, { value }: EnergyDataRecord) => {
-          return value < 0 ? previousValue + value : previousValue;
-        }, 0)
-    )
-  );
-
-  totalEnergyProduction = computed(() =>
-    this.store
-      .energyDataEntities()
-      .reduce((previousValue: number, { value, id }: EnergyDataRecord) => {
-        console.log(previousValue, value, id);
-
-        return value > 0 ? previousValue + value : previousValue;
-      }, 0)
-  );
-
-  g11Price = computed(() =>
-    calculatePrice(this.store.energyDataEntities(), 'G11')
-  );
-
-  g12Price = computed(() =>
-    calculatePrice(this.store.energyDataEntities(), 'G12')
-  );
-
-  g12WPrice = computed(() =>
-    calculatePrice(this.store.energyDataEntities(), 'G12W')
-  );
 }
 
-interface BatterySummary extends Battery {
+interface BatterySummary extends Battery, EnergyData {
   selfConsumption: number;
 }

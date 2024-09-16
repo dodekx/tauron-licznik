@@ -1,35 +1,4 @@
 @if(store.isLoaded()){
-<mat-list role="list">
-  <mat-list-item role="listitem">
-    <div matListItemTitle>Produkcja</div>
-    <div matListItemLine>
-      {{ totalEnergyProduction() | number : "1.2-2" }} kwh
-    </div>
-  </mat-list-item>
-
-  <mat-list-item role="listitem">
-    <div matListItemTitle>Zużycie</div>
-    <div matListItemLine>
-      {{ totalEnergyConsumption() | number : "1.2-2" }} kwh
-    </div>
-  </mat-list-item>
-
-  <mat-list-item role="listitem">
-    <div matListItemTitle>Cena G11</div>
-    <div matListItemLine>{{ g11Price() | number : "1.2-2" }} zł</div>
-  </mat-list-item>
-
-  <mat-list-item role="listitem">
-    <div matListItemTitle>Cena G12</div>
-    <div matListItemLine>{{ g12Price() | number : "1.2-2" }} zł</div>
-  </mat-list-item>
-
-  <mat-list-item role="listitem">
-    <div matListItemTitle>Cena G12 W</div>
-    <div matListItemLine>{{ g12WPrice() | number : "1.2-2" }} zł</div>
-  </mat-list-item>
-</mat-list>
-
 <table mat-table [dataSource]="batteryRows()" matSort>
   <!-- ID Column -->
   <ng-container matColumnDef="id">
@@ -39,20 +8,76 @@
 
   <!-- Capacity Column -->
   <ng-container matColumnDef="capacity">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Capacity (kWh)</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Pojemność (kwh)</th>
     <td mat-cell *matCellDef="let element">{{ element.capacity }}</td>
   </ng-container>
 
   <!-- Power Column -->
   <ng-container matColumnDef="power">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Power (kW)</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Moc (kW)</th>
     <td mat-cell *matCellDef="let element">{{ element.power }}</td>
   </ng-container>
 
   <!-- Self Consumption Column -->
   <ng-container matColumnDef="selfConsumption">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Self Consumption</th>
-    <td mat-cell *matCellDef="let element">{{ element.selfConsumption }}</td>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Autokonsumcja (kwh)
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.selfConsumption | number : "1.2-2" }}
+    </td>
+  </ng-container>
+
+  <!-- Consumption Column -->
+  <ng-container matColumnDef="consumption">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Pobrano z sieci (kwh)
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.consumption | number : "1.2-2" }}
+    </td>
+  </ng-container>
+
+  <!-- fedIntoGrid Column -->
+  <ng-container matColumnDef="fedIntoGrid">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Oddano do sieci (kwh)
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.fedIntoGrid | number : "1.2-2" }}
+    </td>
+  </ng-container>
+
+  <!-- priceG11 Column -->
+  <ng-container matColumnDef="priceG11">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>G11 (zł)</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.priceG11 | number : "1.2-2" }}
+    </td>
+  </ng-container>
+
+  <!-- priceG12 Column -->
+  <ng-container matColumnDef="priceG12">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>G12 (zł)</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.priceG12 | number : "1.2-2" }}
+    </td>
+  </ng-container>
+
+  <!-- priceG12W Column -->
+  <ng-container matColumnDef="priceG12W">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>G12W (zł)</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.priceG12W | number : "1.2-2" }}
+    </td>
+  </ng-container>
+
+  <!-- priceG13 Column -->
+  <ng-container matColumnDef="priceG13">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>G13 (zł)</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.priceG13 | number : "1.2-2" }}
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
