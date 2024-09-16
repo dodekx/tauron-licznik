@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/energia-tauron",
+    "public": "dist/energia-tauron/browser",
     "ignore": ["**/.*", "**/node_modules/**"],
     "rewrites": [
       {
