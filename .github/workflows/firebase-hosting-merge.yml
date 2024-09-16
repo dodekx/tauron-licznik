@@ -16,7 +16,7 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: npm test
+        run: ng test --browsers ChromeHeadless --watch=false
 
       - name: Build project
         run: npm run build --prod
