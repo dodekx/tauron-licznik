@@ -1,0 +1,12 @@
+<mat-card appearance="outlined">
+  <mat-card-header>Wczytaj dane z elicznika Tauron</mat-card-header>
+  <mat-card-content>
+    <form>
+      <input type="file" (change)="onFileSelected($event)" />
+    </form>
+
+    @if(store.isLoading()){
+    <mat-spinner></mat-spinner>
+    }
+  </mat-card-content>
+</mat-card>

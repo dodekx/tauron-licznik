@@ -1,0 +1,45 @@
+@if(store.isLoaded()){
+<mat-list role="list">
+  <mat-list-item role="listitem">
+    <div matListItemTitle>Produkcja</div>
+    <div matListItemLine>
+      {{ store.totalEnergyProduction() | number : "1.2-2" }} kwh
+    </div>
+  </mat-list-item>
+  <mat-list-item role="listitem">
+    <div matListItemTitle>Zużycie</div>
+    <div matListItemLine>
+      {{ store.totalEnergyConsumption() | number : "1.2-2" }} kwh
+    </div>
+  </mat-list-item>
+</mat-list>
+
+<table mat-table [dataSource]="batteryRows()" matSort>
+  <!-- ID Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <!-- Capacity Column -->
+  <ng-container matColumnDef="capacity">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Capacity (kWh)</th>
+    <td mat-cell *matCellDef="let element">{{ element.capacity }}</td>
+  </ng-container>
+
+  <!-- Power Column -->
+  <ng-container matColumnDef="power">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Power (kW)</th>
+    <td mat-cell *matCellDef="let element">{{ element.power }}</td>
+  </ng-container>
+
+  <!-- Self Consumption Column -->
+  <ng-container matColumnDef="selfConsumption">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Self Consumption</th>
+    <td mat-cell *matCellDef="let element">{{ element.selfConsumption }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+}

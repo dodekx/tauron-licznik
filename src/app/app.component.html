@@ -1,1 +1,12 @@
-<main>Dziala</main>
+<main>
+  <!-- @if(!store.isLoaded()){ -->
+  <article>
+    <app-load-data-tauron></app-load-data-tauron>
+  </article>
+  <!-- } @if(store.isLoaded()){ -->
+  <article>
+    <app-energy-summary-list></app-energy-summary-list>
+  </article>
+
+  <!-- } -->
+</main>
