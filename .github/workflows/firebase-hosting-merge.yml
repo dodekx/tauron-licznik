@@ -33,9 +33,10 @@ jobs:
           firebase login:ci --no-localhost --token $(cat serviceAccountKey.json | jq -r '.private_key')
 
       - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          projectId: ${{ secrets.FIREBASE_PROJECT_ID }}
-          site: ${{ secrets.FIREBASE_SITE }} # Optional: If you have multiple sites
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TAURON_LICZNIK }}
+          channelId: live
+          projectId: tauron-licznik
           public_dir: dist/energia-tauron # Replace with your build output directory
-
