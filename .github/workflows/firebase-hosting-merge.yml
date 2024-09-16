@@ -23,6 +23,9 @@ jobs:
       - name: Build Angular app
         run: npm run build
 
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
       - name: Configure Firebase CLI
         run: |
           echo ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }} > serviceAccountKey.json
@@ -30,8 +33,9 @@ jobs:
           firebase login:ci --no-localhost --token $(cat serviceAccountKey.json | jq -r '.private_key')
 
       - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
+        uses: FirebaseExtended/action-hosting-deploy@v1
         with:
           projectId: ${{ secrets.FIREBASE_PROJECT_ID }}
           site: ${{ secrets.FIREBASE_SITE }} # Optional: If you have multiple sites
-          public_dir: dist/your-angular-app # Replace with your build output directory
+          public_dir: dist/energia-tauron # Replace with your build output directory
+
