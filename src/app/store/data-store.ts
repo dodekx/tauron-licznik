@@ -1,5 +1,4 @@
 import { computed } from '@angular/core';
-import { EnergyDataRecord, Battery } from '../types/data-record';
 import {
   patchState,
   signalStore,
@@ -12,17 +11,15 @@ import {
   addEntities,
   entityConfig,
   setAllEntities,
-  setEntities,
-  setEntity,
-  updateEntity,
   withEntities,
 } from '@ngrx/signals/entities';
-import { calculateEnergyDataWithBattery } from './calculate-increased-self-consumption';
+import { EnergyDataRecord } from '../types/energy-data-record';
+import { Battery } from '../types/battery';
 
-type DataRecordState = {
+interface DataRecordState {
   isLoaded: boolean;
   isLoading: boolean;
-};
+}
 const initialState: DataRecordState = {
   isLoaded: false,
   isLoading: false,

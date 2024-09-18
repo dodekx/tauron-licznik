@@ -1,11 +1,9 @@
-import { Battery, EnergyDataRecord } from '../types/data-record';
+import {  EnergyDataRecord } from '../types/energy-data-record';
 
 type Tariff = 'G11' | 'G12' | 'G12W' | 'G13';
 
 export type TariffRates = {
-  [key in Tariff]: {
-    [key: string]: number;
-  };
+  [key in Tariff]: Record<string, number>;
 };
 
 export const tariffRates: TariffRates = {

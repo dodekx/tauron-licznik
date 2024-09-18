@@ -1,0 +1,61 @@
+<mat-toolbar>Krok 1. Wczytaj dane z elicznika</mat-toolbar>
+
+<mat-expansion-panel
+  (opened)="panelOpenState.set(true)"
+  (closed)="panelOpenState.set(false)"
+>
+  <mat-expansion-panel-header>
+    <mat-panel-title> Jak korzystać z aplikacji </mat-panel-title>
+    <mat-panel-description>
+      {{ !panelOpenState() ? "kliknij aby zobaczyć instrukcje" : "" }}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <p>
+    <strong>Twoje dane są bezpieczne.</strong> Wszystkie obliczenia odbywają się
+    bezpośrednio na Twoim urządzeniu. Nie sa wysyłane gdziekolwiek indziej. Nie
+    sa przetwazane w celach marketingowych
+  </p>
+
+  <h3>1. Logowanie do eLicznika Tauron</h3>
+  <ol>
+    <li>
+      Przejdź na stronę eLicznika Tauron:
+      <a href="https://elicznik.tauron-dystrybucja.pl/" target="_blank"
+        >https://elicznik.tauron-dystrybucja.pl/</a
+      >
+      (kliknięcie w link otworzy stronę w nowej karcie)
+    </li>
+    <li>Zaloguj się na swoje konto.</li>
+  </ol>
+
+  <h3>2. Pobieranie danych</h3>
+  <ol>
+    <li>Wybierz swój licznik.</li>
+    <li>Kliknij przycisk "Więcej o energii, wykres".</li>
+    <li>Wybierz zakładkę "Miesiąc".</li>
+    <li>Kliknij "Pobierz dane".</li>
+    <li>
+      <strong>Ważne:</strong>
+      <ul>
+        <li>
+          Wybierz: Pobierz dane godzinowe, Rodzaj danych: pobór i oddanie,
+          Format danych: CSV.
+        </li>
+        <li>Nie zaznaczaj opcji "Dane po zbilansowaniu".</li>
+      </ul>
+    </li>
+    <li>Pobierz dane za wszystkie interesujące Cię miesiące.</li>
+  </ol>
+
+  <h3>3. Wczytywanie danych do aplikacji</h3>
+  <ol>
+    <li>Wróć do aplikacji.</li>
+    <li>Wybierz pobrane pliki.</li>
+    <li>Sprawdź, czy nie ma duplikatów.</li>
+    <li>Kliknij przycisk "Oblicz".</li>
+  </ol>
+</mat-expansion-panel>
+
+<app-load-data-tauron></app-load-data-tauron>
+<app-file-list></app-file-list>

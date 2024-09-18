@@ -7,7 +7,8 @@
     "build": "ng build",
     "build:prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "@angular/router": "18.2.3",
     "@ngrx/signals": "^18.0.2",
     "@ngrx/store": "^18.0.2",
+    "ngx-file-drop": "^16.0.0",
     "papaparse": "^5.4.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -34,12 +36,17 @@
     "@angular/compiler-cli": "18.2.3",
     "@types/jasmine": "~5.1.0",
     "@types/papaparse": "^5.3.14",
+    "angular-eslint": "18.3.1",
+    "eslint": "^9.10.0",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-unused-imports": "^4.1.4",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.5.2"
+    "typescript": "~5.5.2",
+    "typescript-eslint": "8.2.0"
   }
 }

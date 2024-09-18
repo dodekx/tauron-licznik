@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as Papa from 'papaparse';
-import { EnergyDataRecord, EnergyDataRecordCSV } from '../types/data-record';
-
+import { EnergyDataRecordCSV } from '../types/energy-data-record-csv';
+import { EnergyDataRecord } from '../../types/energy-data-record';
 @Injectable({
   providedIn: 'root',
 })

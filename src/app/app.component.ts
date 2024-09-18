@@ -2,8 +2,9 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DataRecordStore } from './store/data-store';
 import { CommonModule } from '@angular/common';
-import { LoadDataTauronComponent } from './components/load-data-tauron/load-data-tauron.component';
+import { LoadDataTauronComponent } from './load-energy-data-tauron/components/load-data-tauron.component/load-data-tauron.component';
 import { EnergySummaryListComponent } from './components/energy-summary-list/energy-summary-list.component';
+import { LoadEnergyDataTauronComponent } from './load-energy-data-tauron/load-energy-data-tauron.component';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,8 @@ import { EnergySummaryListComponent } from './components/energy-summary-list/ene
   imports: [
     RouterOutlet,
     CommonModule,
-    LoadDataTauronComponent,
     EnergySummaryListComponent,
+    LoadEnergyDataTauronComponent,
   ],
   providers: [DataRecordStore],
   templateUrl: './app.component.html',
@@ -20,14 +21,3 @@ import { EnergySummaryListComponent } from './components/energy-summary-list/ene
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}
-
-/*
-TODO
-wczytywanie cen gieldowych
-ustawienie cen taryf g11, g12,g12w,g13 // na razie obecna stawka
-na ile oplaca sie przejsc na inna taryfe
-podanie na ile oplacalna taryfa dynamiczna
-ustawienie dodawania miesiacami odczytu licznika
-resetowania danych
-
-*/

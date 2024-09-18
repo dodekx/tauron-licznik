@@ -1,14 +1,7 @@
-import {
-  Component,
-  computed,
-  inject,
-  effect,
-  AfterViewInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { DataRecordStore } from '../../store/data-store';
-import { bydHVM, bydHVS, sampleBattery } from '../../batteries-data/byd_hvs';
+import { sampleBattery } from '../../batteries-data/byd_hvs';
 import {
   calculateEnergyDataWithBattery,
   EnergyData,
@@ -17,8 +10,7 @@ import { CommonModule } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-
-import { Battery } from '../../types/data-record';
+import { Battery } from '../../types/battery';
 
 @Component({
   selector: 'app-energy-summary-list',

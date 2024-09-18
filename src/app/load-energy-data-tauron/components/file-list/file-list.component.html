@@ -1,0 +1,31 @@
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Lista plików do importu</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      @for (file of files(); track file.name) {
+      <mat-list-item>
+        <span class="file-name {{ file.isValid ? 'ok' : '' }}">{{
+          file.name
+        }}</span>
+      </mat-list-item>
+      }@empty {
+      <mat-list-item>
+        <span>Nie pobrano żadnych plików</span>
+      </mat-list-item>
+      }
+    </mat-list>
+  </mat-card-content>
+  <mat-card-footer class="example-card-footer">
+    @if(thereNeedRemoveWrongFilesFromTheList()){
+    <button mat-button color="warn" (click)="clearWrongFiles()">
+      Usuń niepoprawne pliki
+    </button>
+    } @else if(isReadyForImpoportData()){
+    <button mat-flat-button color="primary" (click)="loadData()">
+      Rozpocznij import danych
+    </button>
+    }
+  </mat-card-footer>
+</mat-card>

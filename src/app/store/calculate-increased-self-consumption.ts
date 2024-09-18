@@ -1,4 +1,5 @@
-import { Battery, EnergyDataRecord } from '../types/data-record';
+import { Battery } from '../types/battery';
+import { EnergyDataRecord } from '../types/energy-data-record';
 import {
   calculateG11Price,
   calculateG12Price,

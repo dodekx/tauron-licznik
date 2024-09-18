@@ -1,0 +1,29 @@
+<div class="center">
+  <mat-card>
+    <mat-card-content>
+      <ngx-file-drop
+        dropZoneLabel="Pobrane pliku csv upuść tutaj lub"
+        [multiple]="true"
+        accept=".csv"
+        (onFileDrop)="dropped($event)"
+      >
+        <ng-template
+          ngx-file-drop-content-tmp
+          let-openFileSelector="openFileSelector"
+        >
+          <div class="button-container">
+            <span class="label">Pobrane pliku csv upuść tutaj lub</span>
+            <button
+              mat-raised-button
+              type="button"
+              class="button"
+              (click)="openFileSelector()"
+            >
+              Wyszukaj na dysku
+            </button>
+          </div>
+        </ng-template>
+      </ngx-file-drop>
+    </mat-card-content>
+  </mat-card>
+</div>

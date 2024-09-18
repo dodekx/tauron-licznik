@@ -98,11 +98,23 @@
             "scripts": [],
             "karmaConfig": "karma.conf.js"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "518d8f80-d600-4d06-ae4d-22de5286f5d2"
+    "analytics": "518d8f80-d600-4d06-ae4d-22de5286f5d2",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

@@ -1,4 +1,4 @@
-import { Battery, EnergyDataRecord } from '../types/data-record';
+import { Battery, EnergyDataRecord } from '../types/energy-data-record';
 import { calculateEnergyDataWithBattery } from './calculate-increased-self-consumption';
 
 describe('calculateIncreasedSelfConsumption', () => {

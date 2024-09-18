@@ -1,0 +1,7 @@
+.file-name {
+  text-decoration: line-through; /* Przekreślenie tekstu */
+}
+
+.file-name.ok {
+  text-decoration: none; /* Usuwamy przekreślenie, jeśli plik jest ok */
+}
