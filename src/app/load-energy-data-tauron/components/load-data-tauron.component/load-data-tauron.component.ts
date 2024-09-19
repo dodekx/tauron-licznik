@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { EnergyDataRecord } from '../../../types/energy-data-record';
-import { DataRecordStore } from '../../../store/data-store';
+import { DataRecordStore } from '../../../store/data-record-store';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CsvImportService } from '../../services/csv-import.service';
@@ -33,7 +33,6 @@ export class LoadDataTauronComponent {
   readonly loadEnergyDataTauronFileStore = inject(
     loadEnergyDataTauronFileStore
   );
-
 
   files: NgxFileDropEntry[] = [];
 

@@ -1,12 +1,24 @@
-<main>
-  <!-- @if(!store.isLoaded()){ -->
-  <article>
-    <app-load-energy-data-tauron></app-load-energy-data-tauron>
-  </article>
-  <!-- } @if(store.isLoaded()){ -->
-  <article>
-    <app-energy-summary-list></app-energy-summary-list>
-  </article>
+<mat-toolbar color="primary">
+  Program do analizy danych z elicznika tauron
+</mat-toolbar>
 
-  <!-- } -->
-</main>
+<div fxLayout="row" fxLayout.lt-lg="column">
+  <mat-sidenav-container>
+    <mat-sidenav-content>
+      <main>
+        @if(!store.isLoaded()){
+        <article>
+          <app-load-energy-data-tauron></app-load-energy-data-tauron>
+        </article>
+        } @if(store.isLoaded()){
+        <article>
+          <app-energy-summary-list></app-energy-summary-list>
+        </article>
+
+        }
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<mat-toolbar color="accent"> </mat-toolbar>

@@ -9,7 +9,7 @@ import { compose } from '@ngrx/store';
 import { MatCardModule } from '@angular/material/card';
 import { EnergyDataRecord } from '../../../types/energy-data-record';
 import { CsvImportService } from '../../services/csv-import.service';
-import { DataRecordStore } from '../../../store/data-store';
+import { DataRecordStore } from '../../../store/data-record-store';
 
 @Component({
   selector: 'app-file-list',
