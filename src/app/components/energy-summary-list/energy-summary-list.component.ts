@@ -1,6 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
-import { DataRecordStore } from '../../store/data-store';
+import { DataRecordStore } from '../../store/data-record-store';
 import { sampleBattery } from '../../batteries-data/byd_hvs';
 import {
   calculateEnergyDataWithBattery,
