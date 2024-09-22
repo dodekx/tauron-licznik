@@ -1,14 +1,11 @@
-import { computed } from '@angular/core';
 import {
   patchState,
   signalStore,
-  withComputed,
   withMethods,
   withState,
   type,
 } from '@ngrx/signals';
 import {
-  addEntities,
   entityConfig,
   setAllEntities,
   withEntities,
@@ -47,9 +44,7 @@ export const DataRecordStore = signalStore(
       patchState(store, { isLoaded: false });
       patchState(store, { isLoading: true });
       const updatedEntities: EnergyDataRecord[] = [];
-      for (let i = 0; i < items.length; i++) {
-        const item = items[i];
-
+      for (const item of items) {
         if (item.value === 0) {
           continue;
         }
@@ -57,6 +52,7 @@ export const DataRecordStore = signalStore(
         const existedItem = updatedEntities.find(
           (searchItem) => searchItem.id === item.id
         );
+
         if (!existedItem) {
           updatedEntities.push(item);
         } else {
@@ -74,7 +70,7 @@ export const DataRecordStore = signalStore(
       );
       patchState(store, { isLoaded: true });
       patchState(store, { isLoading: false });
+      console.log('done');
     },
-  })),
-  withComputed((store) => ({}))
+  }))
 );

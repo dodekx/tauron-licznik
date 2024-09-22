@@ -9,8 +9,6 @@ import {
   addEntities,
   entityConfig,
   removeEntities,
-  removeEntity,
-  setAllEntities,
   withEntities,
 } from '@ngrx/signals/entities';
 import { NgxFileDropEntry } from 'ngx-file-drop';

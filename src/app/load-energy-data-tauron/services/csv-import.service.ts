@@ -6,7 +6,6 @@ import { EnergyDataRecord } from '../../types/energy-data-record';
   providedIn: 'root',
 })
 export class CsvImportService {
-  constructor() {}
   parseCSV(file: File): Promise<EnergyDataRecord[]> {
     return new Promise((resolve, reject) => {
       Papa.parse<EnergyDataRecordCSV>(file, {
