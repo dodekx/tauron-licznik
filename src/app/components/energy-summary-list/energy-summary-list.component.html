@@ -1,4 +1,3 @@
-@if(store.isLoaded()){
 <table mat-table [dataSource]="batteryRows()" matSort>
   <!-- ID Column -->
   <ng-container matColumnDef="id">
@@ -83,4 +82,3 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
-}

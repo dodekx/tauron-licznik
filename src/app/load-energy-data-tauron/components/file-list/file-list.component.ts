@@ -1,15 +1,14 @@
-import { Component, inject, Signal, computed, Inject } from '@angular/core';
+import { Component, inject, computed } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { loadEnergyDataTauronFileStore } from '../../load-energy-data-tauron.store';
-import { compose } from '@ngrx/store';
 import { MatCardModule } from '@angular/material/card';
-import { EnergyDataRecord } from '../../../types/energy-data-record';
 import { CsvImportService } from '../../services/csv-import.service';
 import { DataRecordStore } from '../../../store/data-record-store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-file-list',
@@ -32,6 +31,7 @@ export class FileListComponent {
 
   readonly csvService = inject(CsvImportService);
   readonly dataRecordStore = inject(DataRecordStore);
+  readonly router = inject(Router);
 
   files = computed<FileListItem[]>(() => {
     return this.loadEnergyDataTauronFileStore.entities().map((file) => {
@@ -56,16 +56,34 @@ export class FileListComponent {
   }
 
   async loadData() {
-    let records: EnergyDataRecord[] = [];
+    const promises: Promise<void>[] = [];
+
     for (const droppedFile of this.loadEnergyDataTauronFileStore.entities()) {
       if (droppedFile.fileEntry.isFile) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-        fileEntry.file(async (file: File) => {
-          console.log('Accepted file:', file);
-          const partials = await this.csvService.parseCSV(file);
-          this.dataRecordStore.loadRecords(partials);
-        });
+        promises.push(
+          new Promise((resolve, reject) => {
+            fileEntry.file(async (file: File) => {
+              try {
+                const partials = await this.csvService.parseCSV(file);
+                this.dataRecordStore.loadRecords(partials);
+                resolve();
+              } catch (error) {
+                reject(error);
+              }
+            });
+          })
+        );
       }
+    }
+
+    try {
+      await Promise.all(promises);
+      // All files have been loaded successfully
+      this.router.navigate(['/wyniki']);
+    } catch (error) {
+      // Handle errors here
+      console.error(error);
     }
   }
 }

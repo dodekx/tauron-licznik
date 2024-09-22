@@ -4,18 +4,16 @@
 
 <div fxLayout="row" fxLayout.lt-lg="column">
   <mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/import">Import danych z elicznika</a>
+        <a mat-list-item routerLink="/wyniki">Wyniki</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
     <mat-sidenav-content>
       <main>
-        @if(!store.isLoaded()){
-        <article>
-          <app-load-energy-data-tauron></app-load-energy-data-tauron>
-        </article>
-        } @if(store.isLoaded()){
-        <article>
-          <app-energy-summary-list></app-energy-summary-list>
-        </article>
-
-        }
+        <router-outlet></router-outlet>
       </main>
     </mat-sidenav-content>
   </mat-sidenav-container>
