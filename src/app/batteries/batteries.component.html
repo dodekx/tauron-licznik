@@ -1,0 +1,51 @@
+<mat-card>
+  <mat-card-title>Magazyny energii</mat-card-title>
+  <mat-table
+    [dataSource]="store.batteryDataEntities()"
+    class="mat-elevation-z8"
+  >
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let storage"> {{ storage.id }} </mat-cell>
+    </ng-container>
+
+    <!-- Capacity Column -->
+    <ng-container matColumnDef="capacity">
+      <mat-header-cell *matHeaderCellDef> Pojemność (kWh) </mat-header-cell>
+      <mat-cell *matCellDef="let storage"> {{ storage.capacity }} </mat-cell>
+    </ng-container>
+
+    <!-- Power Column -->
+    <ng-container matColumnDef="power">
+      <mat-header-cell *matHeaderCellDef> Moc (kW) </mat-header-cell>
+      <mat-cell *matCellDef="let storage"> {{ storage.power }} </mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Akcje </mat-header-cell>
+      <mat-cell *matCellDef="let storage">
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="deleteStorage(storage.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <!-- Footer Row Definition
+  <ng-container matColumnDef="add">
+    <mat-footer-cell *matFooterCellDef colspan="4" class="add-storage-footer">
+      <button mat-raised-button color="primary" (click)="addStorage()">
+        Dodaj magazyn
+      </button>
+    </mat-footer-cell>
+  </ng-container> -->
+</mat-card>

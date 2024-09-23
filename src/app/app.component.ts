@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { DataRecordStore } from './store/data-record-store';
 import { CommonModule } from '@angular/common';
@@ -7,6 +12,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { mainMenu } from './app.routes';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -25,6 +31,17 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-  store = inject(DataRecordStore);
+export class AppComponent implements OnInit {
+  readonly store = inject(DataRecordStore);
+
+  readonly mainMenu = Object.values(mainMenu).map(({ path, label }) => {
+    return {
+      path: `/${path}`,
+      label,
+    };
+  });
+
+  ngOnInit(): void {
+    this.store.initializeBatteries();
+  }
 }
