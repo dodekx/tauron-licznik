@@ -1,7 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { DataRecordStore } from '../../store/data-record-store';
-import { sampleBattery } from '../../batteries-data/byd_hvs';
 import {
   calculateEnergyDataWithBattery,
   EnergyData,
@@ -37,7 +36,8 @@ export class EnergySummaryListComponent {
   batteryRows = computed<MatTableDataSource<BatterySummary>>(() => {
     const energyDataEntities = this.store.energyDataEntities();
 
-    const batteries = [...sampleBattery]
+    const batteries = this.store
+      .batteryDataEntities()
       .sort((a, b) => a.capacity - b.capacity)
       .map((battery) => {
         return {

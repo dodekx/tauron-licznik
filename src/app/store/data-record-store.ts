@@ -7,11 +7,13 @@ import {
 } from '@ngrx/signals';
 import {
   entityConfig,
+  removeEntity,
   setAllEntities,
   withEntities,
 } from '@ngrx/signals/entities';
 import { EnergyDataRecord } from '../types/energy-data-record';
 import { Battery } from '../types/battery';
+import { sampleBattery } from '../batteries/byd_hvs';
 
 interface DataRecordState {
   isLoaded: boolean;
@@ -71,6 +73,23 @@ export const DataRecordStore = signalStore(
       patchState(store, { isLoaded: true });
       patchState(store, { isLoading: false });
       console.log('done');
+    },
+    initializeBatteries: () => {
+      patchState(
+        store,
+        setAllEntities(sampleBattery, {
+          collection: batteryDataConfig.collection,
+        })
+      );
+      console.log('Batteries initialized');
+    },
+    deleteBattery: (id: string) => {
+      patchState(
+        store,
+        removeEntity(id, {
+          collection: batteryDataConfig.collection,
+        })
+      );
     },
   }))
 );
