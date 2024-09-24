@@ -41,17 +41,15 @@
 }
 
 .visible {
-  // display: block; /* Element jest widoczny */
-  opacity: 1; /* Pełna widoczność */
+  opacity: 1;
   height: inherit;
-  transition: opacity 0.3s ease-in-out; /* Płynne przejście */
+  transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 
 .hide {
-  // display: none; /* Element jest ukryty */
-  opacity: 0; /* Element jest niewidoczny */
+  opacity: 0;
   height: 0;
-  transition: opacity height 0.3s ease-in-out; /* Płynne przejście */
+  transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 
 @media (max-width: 1199px) {

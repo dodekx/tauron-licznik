@@ -43,8 +43,9 @@ export class BatteriesComponent {
 
   addBattery() {
     if (this.batteryForm.valid) {
-      const newBattery = this.batteryForm.value;
-      // Add the new battery to your data source
+
+      const newBattery = this.batteryForm.value as Battery;
+      // this.store.addBattery(newBattery);
       console.log('New Battery:', newBattery);
       this.batteryForm.reset();
     }
