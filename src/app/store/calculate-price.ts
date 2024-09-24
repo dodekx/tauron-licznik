@@ -22,7 +22,7 @@ const calcPrice = (distribution: number, electricityPrice: number): Price => {
 
 export const tariffRates: TariffRates = {
   G11: { allDay: calcPrice(0.627, 0.2573) },
-  G12: { day: calcPrice(0.627, 2934), night: calcPrice(0.462, 0.0618) },
+  G12: { day: calcPrice(0.627, 0.2934), night: calcPrice(0.462, 0.0618) },
   G12W: { day: calcPrice(0.844, 0.3314), night: calcPrice(0.462, 0.0527) },
   G13: {
     day: calcPrice(0.67, 0.1922),

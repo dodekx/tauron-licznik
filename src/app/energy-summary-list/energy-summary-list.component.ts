@@ -1,15 +1,15 @@
 import { Component, computed, inject } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
-import { DataRecordStore } from '../../store/data-record-store';
+import { DataRecordStore } from '../store/data-record-store';
 import {
   calculateEnergyDataWithBattery,
   EnergyData,
-} from '../../store/calculate-increased-self-consumption';
+} from '../store/calculate-increased-self-consumption';
 import { CommonModule } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { Battery } from '../../types/battery';
+import { Battery } from '../types/battery';
 
 @Component({
   selector: 'app-energy-summary-list',
