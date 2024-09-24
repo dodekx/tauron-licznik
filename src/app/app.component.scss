@@ -1,31 +1,65 @@
-mat-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+:host {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 1rem;
 }
 
-main {
-  padding: 16px;
+.header {
+  grid-column: 1 / span 1;
 }
 
-main {
-  min-height: calc(100vh - 64px);
+.sidenav-container {
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
-
-.container {
-  display: flex;
-  flex-direction: row;
+.main-content {
+  grid-column: 1 / span 1;
 }
 
-@media (max-width: 1024px) {
-  .container {
-    flex-direction: column;
+@media (min-width: 1200px) {
+  :host {
+    grid-template-columns: 250px 1fr;
+  }
+
+  .navigation {
+    grid-column: 1 / span 1;
+  }
+
+  .main-content {
+    grid-column: 2 / span 1;
+  }
+
+  .sidenav {
+    display: none;
   }
 }
 
-.content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.menu-button {
+  display: none;
+}
+
+.visible {
+  // display: block; /* Element jest widoczny */
+  opacity: 1; /* Pełna widoczność */
+  height: inherit;
+  transition: opacity 0.3s ease-in-out; /* Płynne przejście */
+}
+
+.hide {
+  // display: none; /* Element jest ukryty */
+  opacity: 0; /* Element jest niewidoczny */
+  height: 0;
+  transition: opacity height 0.3s ease-in-out; /* Płynne przejście */
+}
+
+@media (max-width: 1199px) {
+  .menu-button {
+    display: block;
+  }
+
+  .sidenav {
+    display: block;
+  }
 }

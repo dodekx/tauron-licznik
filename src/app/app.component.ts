@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  HostListener,
   inject,
   OnInit,
 } from '@angular/core';
@@ -33,6 +34,7 @@ import { mainMenu } from './app.routes';
 })
 export class AppComponent implements OnInit {
   readonly store = inject(DataRecordStore);
+  menuVisible = true;
 
   readonly mainMenu = Object.values(mainMenu).map(({ path, label }) => {
     return {
@@ -40,8 +42,18 @@ export class AppComponent implements OnInit {
       label,
     };
   });
-
+  screenWidth: number = window.innerWidth;
   ngOnInit(): void {
     this.store.initializeBatteries();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    const screenWidth = (event.target as Window).innerWidth;
+    if (screenWidth >= 1200) {
+      this.menuVisible = true;
+    } else {
+      this.menuVisible = false;
+    }
   }
 }
