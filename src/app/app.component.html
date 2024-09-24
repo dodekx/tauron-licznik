@@ -1,23 +1,23 @@
-<mat-toolbar color="primary">
-  Program do analizy danych z elicznika tauron
+<mat-toolbar class="header">
+  <button
+    mat-icon-button
+    class="menu-button"
+    (click)="menuVisible = !menuVisible"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  Program do analizy danych z eLicznik TAURON
 </mat-toolbar>
 
-<div class="container">
-  <mat-sidenav-container>
-    <mat-sidenav mode="side" opened>
-      <mat-nav-list>
-        @for(item of mainMenu; track item.path){
-        <a mat-list-item [routerLink]="item.path">{{ item.label }}</a>
-        }
-      </mat-nav-list>
-    </mat-sidenav>
+<mat-nav-list
+  class="navigation"
+  [ngClass]="{ visible: menuVisible, hide: !menuVisible }"
+>
+  @for( item of mainMenu; track item.path){
+  <a mat-list-item [routerLink]="item.path">{{ item.label }}</a>
+  }
+</mat-nav-list>
 
-    <mat-sidenav-content class="content">
-      <main>
-        <router-outlet></router-outlet>
-      </main>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</div>
-
-<mat-toolbar color="accent"> </mat-toolbar>
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
