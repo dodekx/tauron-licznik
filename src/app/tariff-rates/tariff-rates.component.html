@@ -1,0 +1,19 @@
+@for(tariffRate of tariffRates; track tariffRate.name){
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ tariffRate.name }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    @for(line of tariffRate.lines; track line.tariffName){
+
+    <p>
+      {{ line.tariffName }} cena: {{ line.values.total | number : "1.2-2" }} zł
+      (prąd {{ line.values.total | number : "1.2-2" }} zł dystrybucja
+      {{ line.values.distribution | number : "1.2-2" }} zł)
+    </p>
+
+    }
+  </mat-card-content>
+</mat-card>
+}
