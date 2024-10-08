@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Price, tariffRates } from '../store/calculate-price';
+import { tariffRates } from '../store/calculate-price';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
@@ -11,22 +11,18 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './tariff-rates.component.scss',
 })
 export class TariffRatesComponent {
-  readonly tariffRates = Object.entries(tariffRates).map(
-    ([name, tariff]) => {
-      return {
-        name,
-        lines: Object.entries(tariff).map(([tariffName, values]) => {
-          return {
-            tariffName,
-            values,
-          };
-        }),
-      };
-    }
-  );
+  readonly tariffRates = Object.entries(tariffRates).map(([name, tariff]) => {
+    return {
+      name,
+      lines: Object.entries(tariff).map(([tariffName, values]) => {
+        return {
+          tariffName,
+          values,
+        };
+      }),
+    };
+  });
   constructor() {
     console.log(tariffRates);
   }
 }
-
-
