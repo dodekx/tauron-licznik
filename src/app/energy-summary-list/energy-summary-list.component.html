@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="batteryRows()" matSort>
+<table mat-table [dataSource]="batteryRows()">
   <!-- ID Column -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
@@ -51,7 +51,7 @@
   <ng-container matColumnDef="priceG11">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>G11 (zł)</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.priceG11 | number : "1.2-2" }}
+      {{ element.priceG11 | number : "1.2-2" }} zł
     </td>
   </ng-container>
 
@@ -59,7 +59,7 @@
   <ng-container matColumnDef="priceG12">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>G12 (zł)</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.priceG12 | number : "1.2-2" }}
+      {{ element.priceG12 | number : "1.2-2" }} zł
     </td>
   </ng-container>
 
@@ -67,7 +67,7 @@
   <ng-container matColumnDef="priceG12W">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>G12W (zł)</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.priceG12W | number : "1.2-2" }}
+      {{ element.priceG12W | number : "1.2-2" }} zł
     </td>
   </ng-container>
 
@@ -75,7 +75,7 @@
   <ng-container matColumnDef="priceG13">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>G13 (zł)</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.priceG13 | number : "1.2-2" }}
+      {{ element.priceG13 | number : "1.2-2" }} zł
     </td>
   </ng-container>
 

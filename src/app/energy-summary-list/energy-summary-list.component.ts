@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { DataRecordStore } from '../store/data-record-store';
 import {
@@ -10,6 +10,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { Battery } from '../types/battery';
+import { TariffEnergyAmountData } from '../store/tariff-definitions';
 
 @Component({
   selector: 'app-energy-summary-list',
@@ -19,13 +20,13 @@ import { Battery } from '../types/battery';
   styleUrl: './energy-summary-list.component.scss',
 })
 export class EnergySummaryListComponent {
+  readonly changeDetectorRef = inject(ChangeDetectorRef);
   readonly store = inject(DataRecordStore);
   displayedColumns: string[] = [
     'id',
     'capacity',
     'power',
     'selfConsumption',
-    'consumption',
     'fedIntoGrid',
     'priceG11',
     'priceG12',
@@ -33,7 +34,7 @@ export class EnergySummaryListComponent {
     'priceG13',
   ];
 
-  batteryRows = computed<MatTableDataSource<BatterySummary>>(() => {
+  batteryRows = computed(() => {
     const energyDataEntities = this.store.energyDataEntities();
 
     const batteries = this.store
@@ -44,11 +45,22 @@ export class EnergySummaryListComponent {
           ...battery,
           ...calculateEnergyDataWithBattery(energyDataEntities, battery),
         };
+      })
+      .map((record) => {
+        return {
+          id: record.id,
+          capacity: record.capacity,
+          power: record.power,
+          efficiency: record.efficiency,
+          selfConsumption: record.selfConsumption,
+          fedIntoGrid: record.fedIntoGrid,
+          priceG11: record.priceG11.totalPrice,
+          priceG12: record.priceG12.totalPrice,
+          priceG12W: record.priceG12W.totalPrice,
+          priceG13: record.priceG13.totalPrice,
+        };
       });
+
     return new MatTableDataSource(batteries);
   });
-}
-
-interface BatterySummary extends Battery, EnergyData {
-  selfConsumption: number;
 }
