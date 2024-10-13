@@ -1,6 +1,5 @@
 import { EnergyDataRecord } from '../types/energy-data-record';
 import {
-  Tariff,
   TariffEnergyAmountData,
   TariffTimeSet,
   TariffZone,

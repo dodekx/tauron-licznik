@@ -14,7 +14,6 @@ import {
   calculateG13TariffEnergyAmount,
 } from './calculate-tariff-energy-amount';
 import {
-  Tariff,
   TariffEnergyAmountData,
   TariffZone,
 } from './tariff-definitions';
