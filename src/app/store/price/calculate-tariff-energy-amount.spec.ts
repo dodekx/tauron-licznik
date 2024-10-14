@@ -1,11 +1,11 @@
-import { EnergyDataRecord } from '../types/energy-data-record';
+import { EnergyDataRecord } from '../../types/energy-data-record';
 import {
   calculateG11TariffEnergyAmount,
   calculateG12TariffEnergyAmount,
   calculateG12WTariffEnergyAmount,
   calculateG13TariffEnergyAmount,
 } from './calculate-tariff-energy-amount';
-import { TariffEnergyAmountData } from './tariff-definitions';
+import { TariffEnergyAmountData } from '../tariff/tariff-definitions';
 
 describe('CalculateTariffEnergyAmount', () => {
   describe('calculateG11TariffEnergyAmount', () => {

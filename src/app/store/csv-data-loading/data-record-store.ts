@@ -11,9 +11,9 @@ import {
   setAllEntities,
   withEntities,
 } from '@ngrx/signals/entities';
-import { EnergyDataRecord } from '../types/energy-data-record';
-import { Battery } from '../types/battery';
-import { sampleBattery } from '../batteries/byd_hvs';
+import { EnergyDataRecord } from '../../types/energy-data-record';
+import { Battery } from '../../types/battery';
+import { sampleBattery } from '../../batteries/byd_hvs';
 
 interface DataRecordState {
   isLoaded: boolean;

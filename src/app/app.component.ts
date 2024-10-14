@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
-import { DataRecordStore } from './store/data-record-store';
+import { DataRecordStore } from './store/csv-data-loading/data-record-store';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';

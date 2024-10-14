@@ -6,17 +6,17 @@ import {
   TariffG12Price,
   TariffG12WPrice,
   TariffG13Price,
-} from './calculate-price';
+} from '../store/price/calculate-price';
 import {
   calculateG11TariffEnergyAmount,
   calculateG12TariffEnergyAmount,
   calculateG12WTariffEnergyAmount,
   calculateG13TariffEnergyAmount,
-} from './calculate-tariff-energy-amount';
+} from '../store/price/calculate-tariff-energy-amount';
 import {
   TariffEnergyAmountData,
   TariffZone,
-} from './tariff-definitions';
+} from '../store/tariff/tariff-definitions';
 
 interface TariffEnergyData extends TariffEnergyAmountData {
   totalPrice: number;
@@ -30,7 +30,7 @@ export interface EnergyData {
   priceG13: TariffEnergyData;
 }
 
-export function calculateEnergyDataWithBattery(
+export function energySummaryDecorator(
   energyData: EnergyDataRecord[],
   battery: Battery
 ): EnergyData {

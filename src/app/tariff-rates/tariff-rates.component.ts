@@ -5,15 +5,15 @@ import {
   TariffG12Price,
   TariffG12WPrice,
   TariffG13Price,
-} from '../store/calculate-price';
+} from '../store/price/calculate-price';
 import { MatCardModule } from '@angular/material/card';
 import {
   G11TariffTimeSet,
   G12TariffTimeSet,
   G12WTariffTimeSet,
   G13TariffTimeSet,
-} from '../store/tariffe-time-set';
-import { TariffRates, TariffTimeSet } from '../store/tariff-definitions';
+} from '../store/tariff/tariffe-time-set';
+import { TariffRates, TariffTimeSet } from '../store/tariff/tariff-definitions';
 
 @Component({
   selector: 'app-tariff-rates',

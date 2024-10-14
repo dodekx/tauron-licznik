@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { loadEnergyDataTauronFileStore } from '../../load-energy-data-tauron.store';
 import { MatCardModule } from '@angular/material/card';
 import { CsvImportService } from '../../services/csv-import.service';
-import { DataRecordStore } from '../../../store/data-record-store';
+import { DataRecordStore } from '../../../store/csv-data-loading/data-record-store';
 import { Router } from '@angular/router';
 
 @Component({

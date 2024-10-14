@@ -1,16 +1,16 @@
-import { EnergyDataRecord } from '../types/energy-data-record';
+import { EnergyDataRecord } from '../../types/energy-data-record';
 import {
   TariffEnergyAmountData,
   TariffTimeSet,
   TariffZone,
-} from './tariff-definitions';
+} from '../tariff/tariff-definitions';
 import {
   G11TariffTimeSet,
   G12TariffTimeSet,
   G12WTariffTimeSet,
   G13TariffTimeSet,
   getTariffZone,
-} from './tariffe-time-set';
+} from '../tariff/tariffe-time-set';
 
 const calculateTariffEnergyAmount = (tariff: TariffTimeSet) => {
   return (
@@ -24,12 +24,10 @@ const calculateTariffEnergyAmount = (tariff: TariffTimeSet) => {
     const tariffZone: TariffZone = getTariffZone(tariff, record.date);
     if (tariffZone in energy.amount) {
       energy.amount[tariffZone] += Math.abs(record.value);
-      energy.totalAmount += Math.abs(record.value);
     } else {
       energy.amount[tariffZone] = Math.abs(record.value);
-      energy.totalAmount += Math.abs(record.value);
     }
-
+    energy.totalAmount += Math.abs(record.value);
     return energy;
   };
 };

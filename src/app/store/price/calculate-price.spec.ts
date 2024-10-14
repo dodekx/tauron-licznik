@@ -7,7 +7,7 @@ import {
   TariffG12WRates,
   TariffG13Rates,
   TariffZone,
-} from './tariff-definitions';
+} from '../tariff/tariff-definitions';
 
 describe('calculatePrice', () => {
   describe('G11calculatePrice', () => {

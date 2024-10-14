@@ -1,4 +1,4 @@
-import {} from './tariffe-time-set';
+import {} from '../tariff/tariffe-time-set';
 import {
   TariffZone,
   Tariff,
@@ -9,7 +9,7 @@ import {
   TariffG12WRates,
   TariffG13Rates,
   TariffEnergyAmountData,
-} from './tariff-definitions';
+} from '../tariff/tariff-definitions';
 
 export const priceFactory = (
   distribution: number,

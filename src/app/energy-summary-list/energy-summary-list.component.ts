@@ -1,9 +1,7 @@
 import { ChangeDetectorRef, Component, computed, inject } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
-import { DataRecordStore } from '../store/data-record-store';
-import {
-  calculateEnergyDataWithBattery,
-} from '../store/calculate-increased-self-consumption';
+import { DataRecordStore } from '../store/csv-data-loading/data-record-store';
+import { energySummaryDecorator } from './calculate-energy-data-with-battery';
 import { CommonModule } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -40,7 +38,7 @@ export class EnergySummaryListComponent {
       .map((battery) => {
         return {
           ...battery,
-          ...calculateEnergyDataWithBattery(energyDataEntities, battery),
+          ...energySummaryDecorator(energyDataEntities, battery),
         };
       })
       .map((record) => {
