@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { BatteriesDataStore } from '../store/battery/battieries-data-store';
 
 @Component({
   selector: 'app-energy-summary-list',
@@ -16,7 +17,9 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class EnergySummaryListComponent {
   readonly changeDetectorRef = inject(ChangeDetectorRef);
-  readonly store = inject(DataRecordStore);
+  readonly dataRecordStore = inject(DataRecordStore);
+  readonly batteriesDataStore = inject(BatteriesDataStore);
+  
   displayedColumns: string[] = [
     'id',
     'capacity',
@@ -30,10 +33,8 @@ export class EnergySummaryListComponent {
   ];
 
   batteryRows = computed(() => {
-    const energyDataEntities = this.store.energyDataEntities();
-
-    const batteries = this.store
-      .batteryDataEntities()
+    const energyDataEntities = this.dataRecordStore.entities();
+    const batteries = this.batteriesDataStore.entities()
       .sort((a, b) => a.capacity - b.capacity)
       .map((battery) => {
         return {

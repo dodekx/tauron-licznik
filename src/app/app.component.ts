@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { mainMenu } from './app.routes';
+import { BatteriesDataStore } from './store/battery/battieries-data-store';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -33,7 +34,8 @@ import { mainMenu } from './app.routes';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-  readonly store = inject(DataRecordStore);
+  readonly batteriesDataStore = inject(BatteriesDataStore);
+
   menuVisible = true;
 
   readonly mainMenu = Object.values(mainMenu).map(({ path, label }) => {
@@ -44,7 +46,7 @@ export class AppComponent implements OnInit {
   });
   screenWidth: number = window.innerWidth;
   ngOnInit(): void {
-    this.store.initializeBatteries();
+    this.batteriesDataStore.initializeBatteries();
   }
 
   @HostListener('window:resize', ['$event'])

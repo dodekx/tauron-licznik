@@ -10,6 +10,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { BatteriesDataStore } from '../store/battery/battieries-data-store';
 @Component({
   selector: 'app-batteries',
   standalone: true,
@@ -27,8 +28,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './batteries.component.scss',
 })
 export class BatteriesComponent {
-  readonly store = inject(DataRecordStore);
-  readonly energyStorages: Battery[] = this.store.batteryDataEntities();
+  readonly batteriesDataStore = inject(BatteriesDataStore);
+
+  readonly energyStorages: Battery[] = this.batteriesDataStore.entities();
   readonly displayedColumns: string[] = [
     'id',
     'capacity',
@@ -38,7 +40,7 @@ export class BatteriesComponent {
   ];
   private readonly fb: FormBuilder = inject(FormBuilder);
   deleteStorage(id: string) {
-    this.store.deleteBattery(id);
+    this.batteriesDataStore.deleteBattery(id);
   }
 
   addBattery() {

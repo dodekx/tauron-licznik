@@ -7,13 +7,10 @@ import {
 } from '@ngrx/signals';
 import {
   entityConfig,
-  removeEntity,
   setAllEntities,
   withEntities,
 } from '@ngrx/signals/entities';
 import { EnergyDataRecord } from '../../types/energy-data-record';
-import { Battery } from '../../types/battery';
-import { sampleBattery } from '../../batteries/byd_hvs';
 
 interface DataRecordState {
   isLoaded: boolean;
@@ -26,21 +23,13 @@ const initialState: DataRecordState = {
 
 const energyDataConfig = entityConfig({
   entity: type<EnergyDataRecord>(),
-  collection: 'energyData',
   selectId: ({ id }: EnergyDataRecord) => id,
-});
-
-const batteryDataConfig = entityConfig({
-  entity: type<Battery>(),
-  collection: 'batteryData',
-  selectId: ({ id }: Battery) => id,
 });
 
 export const DataRecordStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withEntities(energyDataConfig),
-  withEntities(batteryDataConfig),
   withMethods((store) => ({
     loadRecords: (items: EnergyDataRecord[]) => {
       patchState(store, { isLoaded: false });
@@ -64,32 +53,11 @@ export const DataRecordStore = signalStore(
       patchState(
         store,
         setAllEntities(
-          updatedEntities.sort((a, b) => a.date.getTime() - b.date.getTime()),
-          {
-            collection: energyDataConfig.collection,
-          }
+          updatedEntities.sort((a, b) => a.date.getTime() - b.date.getTime())
         )
       );
       patchState(store, { isLoaded: true });
       patchState(store, { isLoading: false });
-      console.log('done');
-    },
-    initializeBatteries: () => {
-      patchState(
-        store,
-        setAllEntities(sampleBattery, {
-          collection: batteryDataConfig.collection,
-        })
-      );
-      console.log('Batteries initialized');
-    },
-    deleteBattery: (id: string) => {
-      patchState(
-        store,
-        removeEntity(id, {
-          collection: batteryDataConfig.collection,
-        })
-      );
     },
   }))
 );
