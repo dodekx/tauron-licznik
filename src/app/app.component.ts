@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
-import { DataRecordStore } from './store/data-record-store';
+import { EnergyDataStore } from './store/energy-data-store/data-record-store';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { mainMenu } from './app.routes';
+import { BatteriesDataStore } from './store/battery/battieries-data-store';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -27,13 +28,14 @@ import { mainMenu } from './app.routes';
     MatButtonModule,
     RouterModule,
   ],
-  providers: [DataRecordStore],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-  readonly store = inject(DataRecordStore);
+  readonly batteriesDataStore = inject(BatteriesDataStore);
+  readonly energyDataStore = inject(EnergyDataStore);
+
   menuVisible = true;
 
   readonly mainMenu = Object.values(mainMenu).map(({ path, label }) => {
@@ -44,7 +46,7 @@ export class AppComponent implements OnInit {
   });
   screenWidth: number = window.innerWidth;
   ngOnInit(): void {
-    this.store.initializeBatteries();
+    this.batteriesDataStore.initializeBatteries();
   }
 
   @HostListener('window:resize', ['$event'])

@@ -1,0 +1,19 @@
+<form [formGroup]="prosumerTypeForm">
+  <mat-radio-group
+    formControlName="prosumerType"
+    (change)="onTypeChange($event)"
+  >
+    <mat-radio-button [value]="prosumerTypes.netMetering70">
+      Net Mettering powyzej 10kwp
+    </mat-radio-button>
+    <mat-radio-button [value]="prosumerTypes.netMetering80">
+      Net Mettering do 10kwp
+    </mat-radio-button>
+    <!-- <mat-radio-button [value]="prosumerTypes.netBillingHourly">
+      Net Billing godzinowy
+    </mat-radio-button> -->
+    <mat-radio-button [value]="prosumerTypes.netBillingMonthly">
+      Net Billing miesięczny
+    </mat-radio-button>
+  </mat-radio-group>
+</form>

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import * as Papa from 'papaparse';
 import { EnergyDataRecordCSV } from '../types/energy-data-record-csv';
-import { EnergyDataRecord } from '../../types/energy-data-record';
+import { EnergyDataRow } from '../../types/energy-data-record';
 @Injectable({
   providedIn: 'root',
 })
 export class CsvImportService {
-  parseCSV(file: File): Promise<EnergyDataRecord[]> {
+  parseCSV(file: File): Promise<EnergyDataRow[]> {
     return new Promise((resolve, reject) => {
       Papa.parse<EnergyDataRecordCSV>(file, {
         header: true,

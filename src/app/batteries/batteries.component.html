@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-title>Magazyny energii</mat-card-title>
   <mat-table
-    [dataSource]="store.batteryDataEntities()"
+    [dataSource]="batteriesDataStore.entities()"
     class="mat-elevation-z8"
   >
     <!-- ID Column -->
@@ -45,7 +45,6 @@
         </button>
       </mat-cell>
       <mat-footer-cell *matFooterCellDef>
-
         <!-- <button mat-icon-button color="primary" (click)="addBattery()">
           <mat-icon>add</mat-icon>
         </button> -->

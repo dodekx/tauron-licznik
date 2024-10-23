@@ -1,4 +1,4 @@
-export interface EnergyDataRecord {
+export interface EnergyDataRow {
   date: Date;
   value: number;
   id: string;
