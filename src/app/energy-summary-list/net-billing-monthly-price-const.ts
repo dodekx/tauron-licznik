@@ -9,6 +9,19 @@ const RCEM_MONTHLY_PRICE_CONST: Map<number, Map<Month, MonthlyPrice>> = new Map<
   Map<Month, MonthlyPrice>
 >([
   [
+    2022,
+    new Map<Month, MonthlyPrice>([
+      [Month.June, { RCEm: 0.656 }],
+      [Month.July, { RCEm: 0.796 }],
+      [Month.August, { RCEm: 0.1017 }],
+      [Month.September, { RCEm: 0.71 }],
+      [Month.October, { RCEm: 0.575 }],
+      [Month.November, { RCEm: 0.701 }],
+      [Month.December, { RCEm: 0.723 }],
+    ]),
+  ],
+
+  [
     2023,
     new Map<Month, MonthlyPrice>([
       [Month.January, { RCEm: 0.594 }],
