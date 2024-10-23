@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
-import { DataRecordStore } from './store/csv-data-loading/data-record-store';
+import { EnergyDataStore } from './store/energy-data-store/data-record-store';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -28,13 +28,13 @@ import { BatteriesDataStore } from './store/battery/battieries-data-store';
     MatButtonModule,
     RouterModule,
   ],
-  providers: [DataRecordStore],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   readonly batteriesDataStore = inject(BatteriesDataStore);
+  readonly energyDataStore = inject(EnergyDataStore);
 
   menuVisible = true;
 

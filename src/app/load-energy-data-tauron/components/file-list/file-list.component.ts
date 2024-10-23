@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { loadEnergyDataTauronFileStore } from '../../load-energy-data-tauron.store';
 import { MatCardModule } from '@angular/material/card';
 import { CsvImportService } from '../../services/csv-import.service';
-import { DataRecordStore } from '../../../store/csv-data-loading/data-record-store';
+import { EnergyDataStore } from '../../../store/energy-data-store/data-record-store';
 import { Router } from '@angular/router';
 
 @Component({
@@ -30,7 +30,7 @@ export class FileListComponent {
   );
 
   readonly csvService = inject(CsvImportService);
-  readonly dataRecordStore = inject(DataRecordStore);
+  readonly dataRecordStore = inject(EnergyDataStore);
   readonly router = inject(Router);
 
   files = computed<FileListItem[]>(() => {
@@ -61,6 +61,7 @@ export class FileListComponent {
     for (const droppedFile of this.loadEnergyDataTauronFileStore.entities()) {
       if (droppedFile.fileEntry.isFile) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
+
         promises.push(
           new Promise((resolve, reject) => {
             fileEntry.file(async (file: File) => {
@@ -79,7 +80,7 @@ export class FileListComponent {
 
     try {
       await Promise.all(promises);
-      // All files have been loaded successfully
+
       this.router.navigate(['/wyniki']);
     } catch (error) {
       // Handle errors here

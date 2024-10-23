@@ -1,3 +1,6 @@
+<mat-card>
+  <app-prosumer-type-selector> </app-prosumer-type-selector>
+</mat-card>
 <table mat-table [dataSource]="batteryRows()">
   <!-- ID Column -->
   <ng-container matColumnDef="id">
@@ -29,9 +32,7 @@
 
   <!-- Consumption Column -->
   <ng-container matColumnDef="consumption">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>
-      Pobrano z sieci (kwh)
-    </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Zużyto (kwh)</th>
     <td mat-cell *matCellDef="let element">
       {{ element.consumption | number : "1.2-2" }}
     </td>
@@ -82,3 +83,10 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+
+<h3>Uwagi</h3>
+<p>Net mettering posiada dene od stycznia 2023 do wrzesnia 2024</p>
+<p>
+  Ceny obejmuja tylko dystrybucje i cene za energie elektryczna, bez kosztow
+  typy oplata mocowa, oplata oze itd. Sa szacunkowe.
+</p>
