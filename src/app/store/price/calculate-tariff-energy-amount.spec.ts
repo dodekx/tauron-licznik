@@ -1,9 +1,9 @@
 import { EnergyDataRow } from '../../types/energy-data-record';
 import {
-  calculateG11TariffEnergyAmount,
-  calculateG12TariffEnergyAmount,
-  calculateG12WTariffEnergyAmount,
-  calculateG13TariffEnergyAmount,
+  sumG11TariffEnergyAmount,
+  sumG12TariffEnergyAmount,
+  sumG12WTariffEnergyAmount,
+  sumG13TariffEnergyAmount,
 } from './calculate-tariff-energy-amount';
 import { TariffEnergyAmountData } from '../tariff/tariff-definitions';
 
@@ -19,7 +19,7 @@ describe('CalculateTariffEnergyAmount', () => {
         amount: { Day: 0 },
         totalAmount: 0,
       };
-      const result = calculateG11TariffEnergyAmount(
+      const result = sumG11TariffEnergyAmount(
         tariffEnergyAmountData,
         energyDataRecord
       );
@@ -42,7 +42,7 @@ describe('CalculateTariffEnergyAmount', () => {
         amount: { Day: 0, Night: 0 },
         totalAmount: 0,
       };
-      const result = calculateG12TariffEnergyAmount(
+      const result = sumG12TariffEnergyAmount(
         tariffEnergyAmountData,
         energyDataRecord
       );
@@ -63,7 +63,7 @@ describe('CalculateTariffEnergyAmount', () => {
         amount: { Day: 0, Night: 0 },
         totalAmount: 0,
       };
-      const result = calculateG12TariffEnergyAmount(
+      const result = sumG12TariffEnergyAmount(
         tariffEnergyAmountData,
         energyDataRecord
       );
@@ -84,7 +84,7 @@ describe('CalculateTariffEnergyAmount', () => {
         amount: { Day: 0, Night: 1 },
         totalAmount: 1,
       };
-      const result = calculateG12TariffEnergyAmount(
+      const result = sumG12TariffEnergyAmount(
         tariffEnergyAmountData,
         energyDataRecord
       );
@@ -107,7 +107,7 @@ describe('CalculateTariffEnergyAmount', () => {
         amount: { Day: 0, Night: 0 },
         totalAmount: 0,
       };
-      const result = calculateG12WTariffEnergyAmount(
+      const result = sumG12WTariffEnergyAmount(
         tariffEnergyAmountData,
         energyDataRecord
       );
@@ -130,7 +130,7 @@ describe('CalculateTariffEnergyAmount', () => {
         amount: { Day: 0, Night: 0, Peak: 0 },
         totalAmount: 0,
       };
-      const result = calculateG13TariffEnergyAmount(
+      const result = sumG13TariffEnergyAmount(
         tariffEnergyAmountData,
         energyDataRecord
       );

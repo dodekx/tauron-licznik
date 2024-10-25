@@ -31,44 +31,32 @@ const sumTariffEnergyAmount = (
 const calculateTariffEnergyAmount = (tariff: TariffTimeSet) => {
   return (
     energy: TariffEnergyAmountData,
-    { date, value }: EnergyDataRow
+    { date, value }:Omit<EnergyDataRow, 'id'>
   ): TariffEnergyAmountData => {
-    if (value >= 0) {
-      return energy;
-    }
+
 
     return sumTariffEnergyAmount(energy, value, date, tariff);
   };
 };
 
-const calculateTariffEnergyProductionAmount = (tariff: TariffTimeSet) => {
-  return (
-    energy: TariffEnergyAmountData,
-    amount: number,
-    date: Date
-  ): TariffEnergyAmountData => {
-    if (amount <= 0) {
-      return energy;
-    }
 
-    return sumTariffEnergyAmount(energy, amount, date, tariff);
+export const sumG11TariffEnergyAmount =
+  calculateTariffEnergyAmount(G11TariffTimeSet);
+export const sumG12TariffEnergyAmount =
+  calculateTariffEnergyAmount(G12TariffTimeSet);
+export const sumG12WTariffEnergyAmount =
+  calculateTariffEnergyAmount(G12WTariffTimeSet);
+export const sumG13TariffEnergyAmount =
+  calculateTariffEnergyAmount(G13TariffTimeSet);
+
+
+
+const calculateTariffZone = (tariff: TariffTimeSet) => {
+  return (date: Date): TariffZone => {
+    return getTariffZone(tariff, date);
   };
 };
 
-export const calculateG11TariffEnergyAmount =
-  calculateTariffEnergyAmount(G11TariffTimeSet);
-export const calculateG12TariffEnergyAmount =
-  calculateTariffEnergyAmount(G12TariffTimeSet);
-export const calculateG12WTariffEnergyAmount =
-  calculateTariffEnergyAmount(G12WTariffTimeSet);
-export const calculateG13TariffEnergyAmount =
-  calculateTariffEnergyAmount(G13TariffTimeSet);
-
-export const calculateG11TariffEnergyProductionAmount =
-  calculateTariffEnergyProductionAmount(G11TariffTimeSet);
-export const calculateG12TariffEnergyProductionAmount =
-  calculateTariffEnergyProductionAmount(G12TariffTimeSet);
-export const calculateG12WTariffEnergyProductionAmount =
-  calculateTariffEnergyProductionAmount(G12WTariffTimeSet);
-export const calculateG13TariffEnergyProductionAmount =
-  calculateTariffEnergyProductionAmount(G13TariffTimeSet);
+export const calculateG12TariffZone = calculateTariffZone(G12TariffTimeSet);
+export const calculateG12WTariffZone = calculateTariffZone(G12WTariffTimeSet);
+export const calculateG13TariffZone = calculateTariffZone(G13TariffTimeSet);

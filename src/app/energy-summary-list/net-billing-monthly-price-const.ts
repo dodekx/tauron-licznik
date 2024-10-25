@@ -1,4 +1,4 @@
-import { Month } from '../store/tariff/tariff-definitions';
+import {Month} from "../model/moth.enum";
 
 interface MonthlyPrice {
   RCEm: number;

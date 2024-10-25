@@ -1,4 +1,3 @@
-import {} from '../tariff/tariffe-time-set';
 import {
   TariffZone,
   Tariff,
@@ -10,6 +9,12 @@ import {
   TariffG13Rates,
   TariffEnergyAmountData,
 } from '../tariff/tariff-definitions';
+import { EnergyDataRow } from '../../types/energy-data-record';
+import {
+  calculateG12TariffZone,
+  calculateG12WTariffZone,
+  calculateG13TariffZone,
+} from './calculate-tariff-energy-amount';
 
 export const priceFactory = (
   distribution: number,
@@ -73,4 +78,44 @@ export function calculatePrice(
   }
 
   return Math.round(price * 100) / 100;
+}
+
+
+
+
+export function calculatePriceWithinDifferentTariffs({
+  date,value
+}: EnergyDataRow): EnergyPricesInDifferentTariffs {
+  return {
+    [Tariff.G11]: parseFloat((value * getTarriffPrice(date, Tariff.G11)).toFixed(4)),
+    [Tariff.G12]: parseFloat((value * getTarriffPrice(date, Tariff.G12)).toFixed(4)),
+    [Tariff.G12W]: parseFloat((value * getTarriffPrice(date, Tariff.G12W)).toFixed(4)),
+    [Tariff.G13]: parseFloat((value * getTarriffPrice(date, Tariff.G13)).toFixed(4)),
+  };
+}
+
+function getTarriffPrice(date: Date, tariff: Tariff): number {
+  switch (tariff) {
+    case Tariff.G11:
+      return TariffG11Price.zones.Day.total;
+    case Tariff.G12: {
+      return TariffG12Price.zones[
+        calculateG12TariffZone(date) as TariffZone.Day | TariffZone.Night
+      ].total;
+    }
+    case Tariff.G12W:
+      return TariffG12WPrice.zones[
+        calculateG12WTariffZone(date) as TariffZone.Day | TariffZone.Night
+      ].total;
+    case Tariff.G13:
+      return TariffG13Price.zones[calculateG13TariffZone(date)].total;
+    default:
+      return 0;
+  }
+}
+export interface EnergyPricesInDifferentTariffs {
+  [Tariff.G11]: number;
+  [Tariff.G12]: number;
+  [Tariff.G12W]: number;
+  [Tariff.G13]: number;
 }

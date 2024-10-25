@@ -1,28 +1,8 @@
-import { Tariff, TariffTimeSet, TariffZone } from './tariff-definitions';
-export enum WeekDay {
-  Sunday = 0,
-  Monday = 1,
-  Tuesday = 2,
-  Wednesday = 3,
-  Thursday = 4,
-  Friday = 5,
-  Saturday = 6,
-}
+import {Period, Tariff, TariffTimeSet, TariffZone} from './tariff-definitions';
+import {WeekDay} from "../../model/week-day.enum";
+import {Month} from "../../model/moth.enum";
 
-export enum Month {
-  January = 0,
-  February = 1,
-  March = 2,
-  April = 3,
-  May = 4,
-  June = 5,
-  July = 6,
-  August = 7,
-  September = 8,
-  October = 9,
-  November = 10,
-  December = 11,
-}
+
 
 export const G11TariffTimeSet: TariffTimeSet = {
   name: Tariff.G11,
@@ -136,25 +116,29 @@ export const G13TariffTimeSet: TariffTimeSet = {
     },
   ],
 };
+
 export function getTariffZone(
-  tariffTimeSet: TariffTimeSet,
-  date: Date
+    tariffTimeSet: TariffTimeSet,
+    date: Date
 ): TariffZone {
-  const day = date.getDay(); // 0 (Sunday) to 6 (Saturday)
-  const hour = date.getHours();
-  const month = date.getMonth(); // 0 (January) to 11 (December)
-  if ('periods' in tariffTimeSet) {
-    for (const period of tariffTimeSet.periods) {
-      if (hour <= period.start || hour > period.end) {
-        continue;
-      }
+    const dayOfWeek = date.getDay(); // 0 (Sunday) to 6 (Saturday)
+    const hourOfDay = date.getHours();
+    const monthOfYear = date.getMonth(); // 0 (January) to 11 (December)
 
-      if (period.months && !period.months.includes(month)) continue;
-      if (period.days && !period.days.includes(day)) continue;
+    const isPeriodActive = (period:Period): boolean => {
+        const isHourInRange = hourOfDay > period.start && hourOfDay <= period.end;
+        const isMonthIncluded = !period.months || period.months.includes(monthOfYear);
+        const isDayIncluded = !period.days || period.days.includes(dayOfWeek);
+        return isHourInRange && isMonthIncluded && isDayIncluded;
+    };
 
-      return period.TariffZone;
+    if ('periods' in tariffTimeSet) {
+        for (const period of tariffTimeSet.periods) {
+            if (isPeriodActive(period)) {
+                return period.TariffZone;
+            }
+        }
     }
-  }
 
-  return tariffTimeSet.defaultTariffZone;
+    return tariffTimeSet.defaultTariffZone;
 }
