@@ -57,3 +57,14 @@ const RCEM_MONTHLY_PRICE_CONST: Map<number, Map<Month, MonthlyPrice>> = new Map<
 export function getRCEmMonthlyPrice(year: number, month: Month): number {
   return RCEM_MONTHLY_PRICE_CONST.get(year)?.get(month)?.RCEm ?? 0;
 }
+
+export function getRCEmMonthlyPricesAsTable(): { year: number, month: Month, RCEm: number }[] {
+  const table: { year: number, month: Month, RCEm: number }[] = [];
+  RCEM_MONTHLY_PRICE_CONST.forEach((monthsMap, year) => {
+    monthsMap.forEach((price, month) => {
+      table.push({year, month, RCEm: price.RCEm});
+    });
+  });
+  console.log(table);
+  return table;
+}

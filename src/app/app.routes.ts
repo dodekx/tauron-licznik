@@ -4,6 +4,7 @@ import { EnergySummaryListComponent } from './energy-summary-list/energy-summary
 import { BatteriesComponent } from './batteries/batteries.component';
 import { TariffRatesComponent } from './tariff-rates/tariff-rates.component';
 import { DataLoadGuard } from './guards/data-load-guard.guard';
+import {RCEMPriceComponent} from "./rcemprice/rcemprice.component";
 
 export type PossibleRoute = Record<string, RouteDescription>;
 
@@ -26,10 +27,16 @@ export const mainMenu: PossibleRoute = {
     path: 'ustawienia-taryf',
   },
 
+  RCEMPrice: {
+    label: 'RCEM',
+    path: 'RCEM',
+  },
+
   dashboard: {
     label: 'Wynik symulacji',
     path: 'wyniki',
   },
+
 };
 
 export const routes: Routes = [
@@ -47,7 +54,16 @@ export const routes: Routes = [
   {
     path: mainMenu['tariffSettings'].path,
     component: TariffRatesComponent,
-    canActivate: [DataLoadGuard],
+  },
+  {
+    path: mainMenu['RCEMPrice'].path,
+    component: RCEMPriceComponent,
+  },
+  {
+    path: mainMenu['tariffSettings'].path,
+    component: TariffRatesComponent,
   },
   { path: '**', redirectTo: 'import' },
 ];
+
+

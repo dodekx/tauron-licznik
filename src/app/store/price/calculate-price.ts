@@ -87,14 +87,14 @@ export function calculatePriceWithinDifferentTariffs({
   date,value
 }: EnergyDataRow): EnergyPricesInDifferentTariffs {
   return {
-    [Tariff.G11]: parseFloat((value * getTarriffPrice(date, Tariff.G11)).toFixed(4)),
-    [Tariff.G12]: parseFloat((value * getTarriffPrice(date, Tariff.G12)).toFixed(4)),
-    [Tariff.G12W]: parseFloat((value * getTarriffPrice(date, Tariff.G12W)).toFixed(4)),
-    [Tariff.G13]: parseFloat((value * getTarriffPrice(date, Tariff.G13)).toFixed(4)),
+    [Tariff.G11]: parseFloat((value * getTariffPrice(date, Tariff.G11)).toFixed(4)),
+    [Tariff.G12]: parseFloat((value * getTariffPrice(date, Tariff.G12)).toFixed(4)),
+    [Tariff.G12W]: parseFloat((value * getTariffPrice(date, Tariff.G12W)).toFixed(4)),
+    [Tariff.G13]: parseFloat((value * getTariffPrice(date, Tariff.G13)).toFixed(4)),
   };
 }
 
-function getTarriffPrice(date: Date, tariff: Tariff): number {
+function getTariffPrice(date: Date, tariff: Tariff): number {
   switch (tariff) {
     case Tariff.G11:
       return TariffG11Price.zones.Day.total;
