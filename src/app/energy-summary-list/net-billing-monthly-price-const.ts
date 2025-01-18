@@ -50,6 +50,9 @@ const RCEM_MONTHLY_PRICE_CONST: Map<number, Map<Month, MonthlyPrice>> = new Map<
       [Month.July, { RCEm: 0.283 }],
       [Month.August, { RCEm: 0.241 }],
       [Month.September, { RCEm: 0.222 }],
+      [Month.October, { RCEm: 0.288 }],
+      [Month.November, { RCEm: 0.399 }],
+      [Month.December, { RCEm: 0.470 }],
     ]),
   ],
 ]);
