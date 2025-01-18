@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, computed, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { EnergyDataStore } from '../store/energy-data-store/data-record-store';
@@ -26,7 +26,6 @@ import { ProsumerTypeSelectorComponent } from './prosumer-type-selector/prosumer
   styleUrl: './energy-summary-list.component.scss',
 })
 export class EnergySummaryListComponent {
-  readonly changeDetectorRef = inject(ChangeDetectorRef);
   readonly dataRecordStore = inject(EnergyDataStore);
   readonly batteriesDataStore = inject(BatteriesDataStore);
 
@@ -62,12 +61,12 @@ export class EnergySummaryListComponent {
           power: record.power,
           efficiency: record.efficiency,
           selfConsumption: record.selfConsumption,
-          consumption: record.priceG11.totalAmount,
+          consumption: record.consumption,
           fedIntoGrid: record.fedIntoGrid,
-          priceG11: record.priceG11.totalPrice,
-          priceG12: record.priceG12.totalPrice,
-          priceG12W: record.priceG12W.totalPrice,
-          priceG13: record.priceG13.totalPrice,
+          priceG11: record.priceG11,
+          priceG12: record.priceG12,
+          priceG12W: record.priceG12W,
+          priceG13: record.priceG13,
         };
       });
 

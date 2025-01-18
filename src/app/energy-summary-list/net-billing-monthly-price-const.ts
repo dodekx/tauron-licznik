@@ -1,4 +1,4 @@
-import { Month } from '../store/tariff/tariff-definitions';
+import {Month} from "../model/moth.enum";
 
 interface MonthlyPrice {
   RCEm: number;
@@ -8,6 +8,19 @@ const RCEM_MONTHLY_PRICE_CONST: Map<number, Map<Month, MonthlyPrice>> = new Map<
   number,
   Map<Month, MonthlyPrice>
 >([
+  [
+    2022,
+    new Map<Month, MonthlyPrice>([
+      [Month.June, { RCEm: 0.656 }],
+      [Month.July, { RCEm: 0.796 }],
+      [Month.August, { RCEm: 0.1017 }],
+      [Month.September, { RCEm: 0.71 }],
+      [Month.October, { RCEm: 0.575 }],
+      [Month.November, { RCEm: 0.701 }],
+      [Month.December, { RCEm: 0.723 }],
+    ]),
+  ],
+
   [
     2023,
     new Map<Month, MonthlyPrice>([
@@ -37,10 +50,24 @@ const RCEM_MONTHLY_PRICE_CONST: Map<number, Map<Month, MonthlyPrice>> = new Map<
       [Month.July, { RCEm: 0.283 }],
       [Month.August, { RCEm: 0.241 }],
       [Month.September, { RCEm: 0.222 }],
+      [Month.October, { RCEm: 0.288 }],
+      [Month.November, { RCEm: 0.399 }],
+      [Month.December, { RCEm: 0.470 }],
     ]),
   ],
 ]);
 
 export function getRCEmMonthlyPrice(year: number, month: Month): number {
   return RCEM_MONTHLY_PRICE_CONST.get(year)?.get(month)?.RCEm ?? 0;
+}
+
+export function getRCEmMonthlyPricesAsTable(): { year: number, month: Month, RCEm: number }[] {
+  const table: { year: number, month: Month, RCEm: number }[] = [];
+  RCEM_MONTHLY_PRICE_CONST.forEach((monthsMap, year) => {
+    monthsMap.forEach((price, month) => {
+      table.push({year, month, RCEm: price.RCEm});
+    });
+  });
+  console.log(table);
+  return table;
 }
